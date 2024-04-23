@@ -1,0 +1,76 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using static System.Console;
+
+
+namespace  Project_1
+{
+    class StudentCard
+    {
+        public int Number{get; set;}
+        public string Series {get; set;}
+        public override string ToString()
+        {
+            return $"\nCard: {Number} {Series}";
+        }
+    }
+    class Student
+    {
+        public string FirstName{get; set;}
+        public string LastName{get; set;}
+        public StudentCard card{get; set;}
+        public override string ToString()
+        {
+            return $"strudent {FirstName}, {LastName}, {card}";
+        }
+    }
+    class Auditory : IEnumerable
+    {
+        Student[] students =
+        {
+            new Student 
+            {
+                FirstName =”John”,
+                LastName =”Miller”,
+                card = new StudentCard { Number=189356, Series=”AB” }
+            },
+        new Student 
+            {
+                FirstName =”Candice”,
+                LastName =”Leman”,
+                card = new StudentCard { Number=345185, Series=”XA” }
+            },
+        new Student 
+            {
+                FirstName =”Joey”,
+                LastName =”Finch”,
+                StudentCard = new StudentCard { Number=258322, Series=”AA” }
+            },
+        };
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return students.GetEnumerator();
+        }
+        public void Sort()
+        {
+            Array.Sort(students);
+        }
+
+    }
+    class Programm
+    {
+        static void Main()
+        {
+            Auditory auditory = new Auditory();
+            WriteLine(“\n++++++++ список студентов +++++\n”);
+            auditory.Sort();
+            foreach(Student student in auditory)
+            {
+                WriteLine(student);
+            }
+            Readline();
+
+        }
+    }
+}
