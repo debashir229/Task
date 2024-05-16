@@ -1,0 +1,66 @@
+using System.Collection.Generic;
+using System.Linq;
+using school;
+
+
+class Programm
+{
+    static void main()
+    {
+        List<Student> students new List<Student> 
+        {
+            new Student("Mark", 3),
+            new Student("Alex", 5),
+            new Student("Vanek", 5),
+            new Student("Serafima", 2),
+            new Student("Gektor", 4)
+        };
+        
+        IEnumerable<Student> queryH = from s in students
+                                where s.mark > 4; and  s.went = false;     
+                                orderby s.marks[^1] descending select s;
+        for(int i = 0; i < 10; ++i)
+        {
+            Console.WriteLine($"day {i + 1}");
+            
+            if(queryH.Count() > 0)
+            {
+                queryH[0].went = true;
+                break;
+            }
+            if(i % 3 == 0)
+            {
+                for(int j = 0; j < 5; ++j)
+                    students[j].went = false;
+            }
+        }
+    }
+}
+
+
+
+---------------------------------------------------------------------------------------
+
+
+
+namespace school
+{
+    class Strudent
+    {
+        public int mark;
+        public string Name { get; set; }
+        public bool went { get; set; }
+        public bool punished { get; set; }
+        
+        
+        public Student(string name, int mark1)
+        {
+            Name = name;
+            went = false;
+            punished = false;
+            marks = new int[10];
+            mark = mark1;
+        }
+    }
+}
+
